@@ -122,13 +122,19 @@ async def start(client, message):
             )   
             if settings.get('is_stream', IS_STREAM):
                 btn = [[
-                    InlineKeyboardButton("⚡ Watch & Download 🚀", callback_data=f"stream#{file.file_id}")
+                    InlineKeyboardButton("✛ ᴡᴀᴛᴄʜ & ᴅᴏᴡɴʟᴏᴀᴅ ✛", callback_data=f"stream#{file.file_id}")
                 ],[
-                    InlineKeyboardButton('🙅 Close', callback_data='close_data')
+                    InlineKeyboardButton('⚡️ ᴜᴘᴅᴀᴛᴇs ⚡️', url=UPDATES_LINK),
+                    InlineKeyboardButton('💡 ꜱᴜᴘᴘᴏʀᴛ 💡', url=SUPPORT_LINK)
+                ],[
+                    InlineKeyboardButton('⁉️ ᴄʟᴏsᴇ ⁉️', callback_data='close_data')
                 ]]
             else:
                 btn = [[
-                    InlineKeyboardButton('🙅 Close', callback_data='close_data')
+                    InlineKeyboardButton('⚡️ ᴜᴘᴅᴀᴛᴇs ⚡️', url=UPDATES_LINK),
+                    InlineKeyboardButton('💡 ꜱᴜᴘᴘᴏʀᴛ 💡', url=SUPPORT_LINK)
+                ],[
+                    InlineKeyboardButton('⁉️ ᴄʟᴏsᴇ ⁉️', callback_data='close_data')
                 ]]
             await client.send_cached_media(
                 chat_id=message.from_user.id,
@@ -162,14 +168,20 @@ async def start(client, message):
     )
     if settings.get('is_stream', IS_STREAM):
         btn = [[
-                    InlineKeyboardButton("⚡ Watch & Download 🚀", callback_data=f"stream#{file.file_id}")
-                ],[
-                    InlineKeyboardButton('🙅 Close', callback_data='close_data')
-                ]]
-            else:
-                btn = [[
-                    InlineKeyboardButton('🙅 Close', callback_data='close_data')
-                ]]
+            InlineKeyboardButton("✛ ᴡᴀᴛᴄʜ & ᴅᴏᴡɴʟᴏᴀᴅ ✛", callback_data=f"stream#{file_id}")
+        ],[
+            InlineKeyboardButton('⚡️ ᴜᴘᴅᴀᴛᴇs ⚡️', url=UPDATES_LINK),
+            InlineKeyboardButton('💡 ꜱᴜᴘᴘᴏʀᴛ 💡', url=SUPPORT_LINK)
+        ],[
+            InlineKeyboardButton('⁉️ ᴄʟᴏsᴇ ⁉️', callback_data='close_data')
+        ]]
+    else:
+        btn = [[
+            InlineKeyboardButton('⚡️ ᴜᴘᴅᴀᴛᴇs ⚡️', url=UPDATES_LINK),
+            InlineKeyboardButton('💡 ꜱᴜᴘᴘᴏʀᴛ 💡', url=SUPPORT_LINK)
+        ],[
+            InlineKeyboardButton('⁉️ ᴄʟᴏsᴇ ⁉️', callback_data='close_data')
+        ]]
     await client.send_cached_media(
         chat_id=message.from_user.id,
         file_id=file_id,
@@ -247,7 +259,7 @@ async def settings(client, message):
             InlineKeyboardButton('Stream', callback_data=f'setgs#is_stream#{settings.get("is_stream", IS_STREAM)}#{str(grp_id)}'),
             InlineKeyboardButton('✅ On' if settings.get("is_stream", IS_STREAM) else '❌ Off', callback_data=f'setgs#is_stream#{settings.get("is_stream", IS_STREAM)}#{str(grp_id)}')
         ],[
-            InlineKeyboardButton('🙅 Close', callback_data='close_data')
+            InlineKeyboardButton('❌ Close ❌', callback_data='close_data')
         ]]
         await message.reply_text(
             text=f"Change your settings for <b>'{message.chat.title}'</b> as your wish. ⚙",
