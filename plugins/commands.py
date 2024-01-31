@@ -124,16 +124,10 @@ async def start(client, message):
                 btn = [[
                     InlineKeyboardButton("✛ ᴡᴀᴛᴄʜ & ᴅᴏᴡɴʟᴏᴀᴅ ✛", callback_data=f"stream#{file.file_id}")
                 ],[
-                    InlineKeyboardButton('⚡️ ᴜᴘᴅᴀᴛᴇs ⚡️', url=UPDATES_LINK),
-                    InlineKeyboardButton('💡 ꜱᴜᴘᴘᴏʀᴛ 💡', url=SUPPORT_LINK)
-                ],[
                     InlineKeyboardButton('⁉️ ᴄʟᴏsᴇ ⁉️', callback_data='close_data')
                 ]]
             else:
                 btn = [[
-                    InlineKeyboardButton('⚡️ ᴜᴘᴅᴀᴛᴇs ⚡️', url=UPDATES_LINK),
-                    InlineKeyboardButton('💡 ꜱᴜᴘᴘᴏʀᴛ 💡', url=SUPPORT_LINK)
-                ],[
                     InlineKeyboardButton('⁉️ ᴄʟᴏsᴇ ⁉️', callback_data='close_data')
                 ]]
             await client.send_cached_media(
@@ -170,16 +164,10 @@ async def start(client, message):
         btn = [[
             InlineKeyboardButton("✛ ᴡᴀᴛᴄʜ & ᴅᴏᴡɴʟᴏᴀᴅ ✛", callback_data=f"stream#{file_id}")
         ],[
-            InlineKeyboardButton('⚡️ ᴜᴘᴅᴀᴛᴇs ⚡️', url=UPDATES_LINK),
-            InlineKeyboardButton('💡 ꜱᴜᴘᴘᴏʀᴛ 💡', url=SUPPORT_LINK)
-        ],[
             InlineKeyboardButton('⁉️ ᴄʟᴏsᴇ ⁉️', callback_data='close_data')
         ]]
     else:
         btn = [[
-            InlineKeyboardButton('⚡️ ᴜᴘᴅᴀᴛᴇs ⚡️', url=UPDATES_LINK),
-            InlineKeyboardButton('💡 ꜱᴜᴘᴘᴏʀᴛ 💡', url=SUPPORT_LINK)
-        ],[
             InlineKeyboardButton('⁉️ ᴄʟᴏsᴇ ⁉️', callback_data='close_data')
         ]]
     await client.send_cached_media(
