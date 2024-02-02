@@ -178,19 +178,36 @@ async def start(client, message):
         reply_markup=InlineKeyboardMarkup(btn)
     )
 
-@Client.on_message(filters.command('index_channels') & filters.user(ADMINS))
-async def channels_info(bot, message):
-    """Send basic information of index channels"""
-    ids = INDEX_CHANNELS
-    if not ids:
-        return await message.reply("Not set INDEX_CHANNELS")
+@Client.on_message(filters.command('channel') & filters.user(ADMINS))
+async def channel_info(bot, message):
+           
+    """Send basic information of channel"""
+    if isinstance(CHANNELS, (int, str)):
+        channels = [CHANNELS]
+    elif isinstance(CHANNELS, list):
+        channels = CHANNELS
+    else:
+        raise ValueError("Unexpected type of CHANNELS")
 
-    text = '**Indexed Channels:**\n\n'
-    for id in ids:
-        chat = await bot.get_chat(id)
-        text += f'{chat.title}\n'
-    text += f'\n**Total:** {len(ids)}'
-    await message.reply(text)
+    text = '📑 **Indexed channels/groups**\n'
+    for channel in channels:
+        chat = await bot.get_chat(channel)
+        if chat.username:
+            text += '\n@' + chat.username
+        else:
+            text += '\n' + chat.title or chat.first_name
+
+    text += f'\n\n**Total:** {len(CHANNELS)}'
+
+    if len(text) < 4096:
+        await message.reply(text)
+    else:
+        file = 'Indexed channels.txt'
+        with open(file, 'w') as f:
+            f.write(text)
+        await message.reply_document(file)
+        os.remove(file)
+
 
 @Client.on_message(filters.command('stats') & filters.user(ADMINS))
 async def stats(bot, message):
